@@ -12,7 +12,7 @@ const getAllStores = async (_req, res) => {
 const getStorebyId = async (req, res) => {
   const storeId = req.params.id;
   try {
-    const store = await knex("stores").where({ id: id });
+    const store = await knex("stores").where({ id: storeId });
     if (store.length === 0) {
       return res.status(404).json({
         message: `Store with ID ${storeId} not found`,

@@ -1,6 +1,7 @@
-exports.seed = async function (knex) {
-  await knex("table_name").del();
-  await knex("table_name").insert([
+const knex = require("knex")(require("../knexfile"));
+async function seedDb() {
+  await knex("stores").del();
+  await knex("stores").insert([
     {
       id: 1,
       name: "Alchemy Vintage by Stephanian",
@@ -166,4 +167,7 @@ exports.seed = async function (knex) {
       ]),
     },
   ]);
-};
+  process.exit();
+}
+
+seedDb();

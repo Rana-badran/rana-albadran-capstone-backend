@@ -3,7 +3,7 @@ const router = require("express").Router();
 const storescontroller = require("../controllers/stores-controllers");
 
 //GET List of all stores
-router.route("/").get(stores - controller.getAllStores);
+router.route("/").get(storescontroller.getAllStores);
 
 //GET a single store
 router.route("/:id").get(storescontroller.getStorebyId);
