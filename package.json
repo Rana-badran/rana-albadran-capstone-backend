@@ -11,7 +11,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seed": "node seeds/stores_data.js"
+    "seed": "node seeds/stores_data.js",
+    "start": "node --watch index.js"
   },
   "keywords": [],
   "author": "",

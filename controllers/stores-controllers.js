@@ -26,6 +26,26 @@ const getStorebyId = async (req, res) => {
     });
   }
 };
+const getFilteredStores = async (req, res) => {
+  console.log("req.query", req.query);
+  const categories = req.query.categories;
+  const categoriesString =
+    categories.split(",").length === 1
+      ? `"${categories}"`
+      : categories.split(",").map((category) => {
+          return `"${category}"`;
+        });
+  // if we pass one category we add double quotes
+  // taking categories and spliting the string into an array (every word that's sparated by a comma)
+  try {
+    const stores = await knex("stores").whereRaw(
+      `JSON_CONTAINS(categories,'[${categoriesString}]')`
+    );
+    res.status(200).json(stores);
+  } catch (err) {
+    res.status(400).send(`Error filtering stores: ${err}`);
+  }
+};
 
 const addStore = async (req, res) => {
   try {
@@ -40,4 +60,5 @@ module.exports = {
   getAllStores,
   getStorebyId,
   addStore,
+  getFilteredStores,
 };
